@@ -1,0 +1,318 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--lb:#0057B8;--tg:#84BD00;--sb:#13355A;--txt:#414141;--cb:#CCE5F4;--dg:#9F9FA2;--dtg:#567C04;--ink:#1c2a3a}
+body{font-family:'Open Sans',sans-serif;color:var(--txt);background:#c9d4e0;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:32px 16px 56px}
+.page{width:840px;background:#fff;box-shadow:0 14px 50px rgba(11,30,56,.22);border-radius:10px;overflow:hidden}
+
+.hdr{background:var(--sb);padding:26px 40px 64px;position:relative}
+.hdr::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:54px;background:#fff;border-radius:58% 58% 0 0/100% 100% 0 0}
+.hdr-row{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.hdr-logo{height:48px;width:auto;display:block}
+.logo-fallback{display:none;flex-direction:column;line-height:1}
+.logo-fallback .lf1{font-family:'Kumbh Sans',sans-serif;font-weight:700;font-size:23px;letter-spacing:1px;color:#fff}
+.logo-fallback .lf2{font-family:'Kumbh Sans',sans-serif;font-weight:500;font-size:10px;letter-spacing:6px;color:var(--tg);margin-top:3px}
+.hdr-right{text-align:right}
+.acct{font-family:'Kumbh Sans',sans-serif;font-weight:700;font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:var(--tg)}
+.acct-sub{font-size:12px;color:rgba(255,255,255,.74);margin-top:6px}
+
+.bd{padding:6px 44px 0}
+.hero{padding:24px 0 22px;border-bottom:1px solid #e4ecf4}
+.hero h1{font-family:'Kumbh Sans',sans-serif;font-weight:700;font-size:40px;line-height:1.1;color:var(--sb);margin-bottom:15px;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;color:var(--lb)}
+.hero p{font-size:14px;line-height:1.72;color:var(--txt);max-width:730px}
+.hero p strong{color:var(--sb);font-weight:700}
+.alert{margin-top:18px;background:var(--cb);border-left:5px solid var(--lb);border-radius:0 7px 7px 0;padding:13px 18px;display:flex;align-items:center;gap:14px}
+.alert-ico{flex-shrink:0;color:var(--lb);display:flex}
+.alert-txt{font-size:13.5px;line-height:1.5;color:var(--ink)}
+.alert-txt strong{color:var(--sb);font-weight:700}
+
+.sec{padding:24px 0 8px}
+.sec-hd{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px}
+.sec-hd h2{font-family:'Kumbh Sans',sans-serif;font-weight:700;font-size:19px;color:var(--sb);margin-bottom:3px}
+.sec-hd p{font-size:13px;color:var(--txt)}
+.expand-all{font-family:'Open Sans',sans-serif;font-size:12px;font-weight:600;color:var(--lb);background:none;border:none;cursor:pointer;white-space:nowrap;padding:4px}
+.expand-all:hover{text-decoration:underline}
+
+/* ACCORDION */
+.acc{border:1px solid #e1eaf3;border-radius:11px;overflow:hidden;margin-bottom:11px;background:#fff;transition:box-shadow .16s,border-color .16s}
+.acc.open{border-color:var(--lb);box-shadow:0 6px 22px rgba(0,87,184,.1)}
+.acc-hd{display:flex;align-items:center;gap:15px;padding:15px 18px;cursor:pointer;user-select:none}
+.acc-hd:hover{background:#f7fafd}
+.t-ico{flex-shrink:0;width:44px;height:44px;border-radius:9px;background:#f1f7fc;display:flex;align-items:center;justify-content:center}
+.acc.open .t-ico{background:var(--lb)}
+.t-ico svg{width:27px;height:27px}
+.acc.open .t-ico svg [stroke]{stroke:#fff}
+.acc.open .t-ico svg [fill="#CCE5F4"]{fill:rgba(255,255,255,.25)}
+.acc-meta{flex:1;min-width:0}
+.acc-title{font-family:'Kumbh Sans',sans-serif;font-weight:600;font-size:15px;color:var(--sb);line-height:1.2}
+.acc-sub{font-size:12px;color:var(--dg);margin-top:3px}
+.chev{flex-shrink:0;color:var(--lb);transition:transform .2s}
+.acc.open .chev{transform:rotate(180deg)}
+.acc-body{display:none;padding:2px 18px 18px 77px}
+.acc.open .acc-body{display:block}
+.path-intro{font-size:12.5px;line-height:1.6;color:var(--txt);margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed #e1eaf3}
+.path-intro b{color:var(--sb);font-weight:700}
+
+.course{display:flex;align-items:center;gap:13px;padding:11px 0;border-bottom:1px solid #f0f4f8}
+.course:last-of-type{border-bottom:none}
+.step{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--cb);color:var(--sb);font-family:'Kumbh Sans',sans-serif;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center}
+.c-main{flex:1;min-width:0}
+.c-name{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.3}
+.c-desc{font-size:11.5px;color:var(--txt);margin-top:2px;line-height:1.45}
+.c-tags{display:flex;align-items:center;gap:7px;margin-top:6px;flex-wrap:wrap}
+.badge{font-size:10px;font-weight:700;letter-spacing:.3px;padding:2.5px 8px;border-radius:20px;text-transform:uppercase}
+.b-found{background:#eef6df;color:var(--dtg)}
+.b-inter{background:#e6f1fb;color:var(--lb)}
+.b-adv{background:#e2e8f1;color:var(--sb)}
+.b-prog{background:#eaf3de;color:var(--dtg)}
+.dur{font-size:11px;color:var(--dg);display:flex;align-items:center;gap:4px}
+.c-link{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:#fff;background:var(--lb);padding:7px 13px;border-radius:7px;text-decoration:none;transition:background .15s;white-space:nowrap}
+.c-link:hover{background:#01469a}
+.browse{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12.5px;font-weight:600;color:var(--lb);text-decoration:none;border:1.5px solid #cfe0f1;padding:8px 14px;border-radius:7px;transition:all .15s}
+.browse:hover{background:#f1f7fc;border-color:var(--lb)}
+
+.why{margin-top:24px;background:#f3f8fc;border:1px solid #e4eef6;border-radius:11px;padding:20px 26px}
+.why h3{font-family:'Kumbh Sans',sans-serif;font-weight:600;font-size:14.5px;color:var(--sb);text-align:center;margin-bottom:18px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:center}
+.stat{position:relative}
+.stat:not(:last-child)::after{content:'';position:absolute;right:-7px;top:6px;bottom:6px;width:1px;background:#dbe6f0}
+.s-val{font-family:'Kumbh Sans',sans-serif;font-weight:700;color:var(--tg);line-height:1;margin-bottom:6px}
+.s-num{font-size:30px}.s-word{font-size:21px}
+.s-lbl{font-size:11px;line-height:1.45;color:var(--txt)}
+
+.ftr{background:var(--sb);padding:20px 44px;display:flex;justify-content:space-between;align-items:center;margin-top:26px}
+.ftr-l{display:flex;align-items:center;gap:18px}
+.ftr-logo{height:30px;width:auto}
+.ftr-fallback{display:none;font-family:'Kumbh Sans',sans-serif;font-weight:700;font-size:15px;letter-spacing:.5px;color:#fff}
+.ftr-divider{width:1px;height:34px;background:rgba(255,255,255,.2)}
+.ftr-name{font-family:'Kumbh Sans',sans-serif;font-weight:600;font-size:15px;color:#fff}
+.ftr-role{font-size:11.5px;color:rgba(255,255,255,.66);margin-top:3px}
+.ftr-r{text-align:right;font-size:12px;color:rgba(255,255,255,.82);line-height:1.7}
+.ftr-cta{color:var(--tg);font-weight:700;font-size:11.5px;text-decoration:none;display:inline-block;margin-top:3px}
+.ftr-cta:hover{text-decoration:underline}
+</style>
+
+<div class="page">
+
+  <div class="hdr">
+    <div class="hdr-row">
+      <img class="hdr-logo" src="https://www.learningtree.ca/images/branding/learning-tree-logo_reversed.webp" alt="Learning Tree International" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <span class="logo-fallback"><span class="lf1">LEARNING TREE</span><span class="lf2">INTERNATIONAL</span></span>
+      <div class="hdr-right">
+        <div class="acct">TD ITS &amp; TD Securities</div>
+        <div class="acct-sub">Q4 fiscal year training &middot; August to October 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bd">
+
+    <div class="hero">
+      <h1>Your Q4 training window<br><em>is now open.</em></h1>
+      <p>The pre-approval window for Q4 training is open through the ITS Travel &amp; Education portal. Learning Tree is on TD's approved vendor list at the group discounted rate, so submissions move through clean with no added procurement lift. <strong>Build your team's Q4 skills plan before the window closes.</strong></p>
+      <div class="alert">
+        <span class="alert-ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="#0057B8" stroke-width="1.7"/><path d="M3 10H21" stroke="#0057B8" stroke-width="1.7"/><line x1="8" y1="3" x2="8" y2="7" stroke="#0057B8" stroke-width="1.7" stroke-linecap="round"/><line x1="16" y1="3" x2="16" y2="7" stroke="#0057B8" stroke-width="1.7" stroke-linecap="round"/><path d="M10 15.5L11.5 17L15 13.5" stroke="#0057B8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="alert-txt"><strong>Pre-approval requests close June 26, 2026.</strong> Submissions after the deadline are reviewed next quarter.</span>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-hd">
+        <div>
+          <h2>Q4 learning paths for ITS teams</h2>
+          <p>Select a practice area to open its recommended path. Each course links to live scheduling on learningtree.ca.</p>
+        </div>
+        <button class="expand-all" id="toggleAll">Expand all</button>
+      </div>
+
+      <div id="accGroup">
+
+        <!-- AZURE -->
+        <div class="acc">
+          <div class="acc-hd">
+            <span class="t-ico"><svg viewBox="0 0 32 32" fill="none"><path d="M8 23C5 23 3 21 3 18.5S5 14 8 14C8 9.6 11.6 6 16 6S24 9.6 24 14H25C27.2 14 29 15.8 29 18S27.2 22 25 22L8 22Z" stroke="#0057B8" stroke-width="1.6" fill="#CCE5F4"/></svg></span>
+            <span class="acc-meta"><span class="acc-title">Azure Certifications</span><span class="acc-sub">Cloud administration path &middot; 3 courses</span></span>
+            <span class="chev"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 7L9 12L14 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="acc-body">
+            <div class="path-intro">Take an engineer from <b>administering</b> Azure environments to <b>architecting and securing</b> them. Recommended sequence for infrastructure and platform teams.</div>
+            <div class="course"><span class="step">1</span><span class="c-main"><span class="c-name">Microsoft Azure Administrator (AZ-104)</span><span class="c-desc">Manage identities, governance, storage, compute, and virtual networking in Azure.</span><span class="c-tags"><span class="badge b-inter">Intermediate</span><span class="dur">4 days</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/microsoft-azure-administration-training/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">2</span><span class="c-main"><span class="c-name">Designing Azure Infrastructure Solutions (AZ-305)</span><span class="c-desc">Architect compute, storage, networking, and identity for scalable Azure solutions.</span><span class="c-tags"><span class="badge b-adv">Advanced</span><span class="dur">Multi-day</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/cloud-computing/azure/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">3</span><span class="c-main"><span class="c-name">Azure Security Technologies (AZ-500)</span><span class="c-desc">Implement security controls, threat protection, and identity management across Azure.</span><span class="c-tags"><span class="badge b-adv">Specialty</span><span class="dur">Multi-day</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/cloud-computing/azure/" target="_blank" rel="noopener">View course →</a></div>
+            <a class="browse" href="https://www.learningtree.ca/courses/cloud-computing/azure/" target="_blank" rel="noopener">Browse all Azure courses ↗</a>
+          </div>
+        </div>
+
+        <!-- AI -->
+        <div class="acc">
+          <div class="acc-hd">
+            <span class="t-ico"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="14" r="6.5" stroke="#0057B8" stroke-width="1.6" fill="#CCE5F4"/><circle cx="16" cy="14" r="2.4" fill="#0057B8"/><line x1="16" y1="5" x2="16" y2="3" stroke="#0057B8" stroke-width="1.5" stroke-linecap="round"/><line x1="23" y1="14" x2="25" y2="14" stroke="#0057B8" stroke-width="1.5" stroke-linecap="round"/><line x1="9" y1="14" x2="7" y2="14" stroke="#0057B8" stroke-width="1.5" stroke-linecap="round"/><path d="M11 27 Q16 25 21 27" stroke="#0057B8" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="22" x2="16" y2="25" stroke="#0057B8" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            <span class="acc-meta"><span class="acc-title">Microsoft Copilot &amp; AI Enablement</span><span class="acc-sub">AI fluency path &middot; 3 courses</span></span>
+            <span class="chev"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 7L9 12L14 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="acc-body">
+            <div class="path-intro">Move teams from <b>AI awareness</b> to <b>building and deploying</b> AI in the SDLC and daily workflow. Strong fit for the AI-in-SDLC agenda.</div>
+            <div class="course"><span class="step">1</span><span class="c-main"><span class="c-name">Azure AI Fundamentals (AI-900)</span><span class="c-desc">Core machine learning and AI workload concepts on Microsoft Azure.</span><span class="c-tags"><span class="badge b-found">Foundation</span><span class="dur">Multi-day</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/data-analytics-and-artificial-intelligence/artificial-intelligence/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">2</span><span class="c-main"><span class="c-name">Azure AI Engineer (AI-102)</span><span class="c-desc">Build, manage, and deploy AI solutions using Azure AI services and the SDK.</span><span class="c-tags"><span class="badge b-inter">Intermediate</span><span class="dur">Multi-day</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/data-analytics-and-artificial-intelligence/artificial-intelligence/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">3</span><span class="c-main"><span class="c-name">AI Enablement Program with Microsoft Copilot</span><span class="c-desc">Role-based program to embed Copilot and MS Cloud into everyday workforce productivity.</span><span class="c-tags"><span class="badge b-prog">Program</span><span class="dur">Multi-week</span></span></span><a class="c-link" href="https://www.learningtree.ca/programs/ai-workforce-enablement-copilot/" target="_blank" rel="noopener">View course →</a></div>
+            <a class="browse" href="https://www.learningtree.ca/courses/data-analytics-and-artificial-intelligence/artificial-intelligence/" target="_blank" rel="noopener">Browse all AI courses ↗</a>
+          </div>
+        </div>
+
+        <!-- SAFE -->
+        <div class="acc">
+          <div class="acc-hd">
+            <span class="t-ico"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="11" stroke="#CCE5F4" stroke-width="3.5"/><path d="M16 5 A11 11 0 0 1 26 12" stroke="#0057B8" stroke-width="1.7" stroke-linecap="round"/><polyline points="22,3 26,5 24,9" stroke="#0057B8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 16 L15.5 18.5 L20 13" stroke="#0057B8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="acc-meta"><span class="acc-title">SAFe &amp; Agile</span><span class="acc-sub">Scaled delivery path &middot; 3 courses</span></span>
+            <span class="chev"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 7L9 12L14 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="acc-body">
+            <div class="path-intro">Align delivery teams on a <b>common scaled-agile operating model</b>, from enterprise framework down to team-level execution.</div>
+            <div class="course"><span class="step">1</span><span class="c-main"><span class="c-name">Leading SAFe</span><span class="c-desc">Lead a Lean-Agile transformation using the Scaled Agile Framework.</span><span class="c-tags"><span class="badge b-inter">Intermediate</span><span class="dur">2 days</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/safe-certification-training/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">2</span><span class="c-main"><span class="c-name">SAFe for Teams</span><span class="c-desc">Equip Agile teams to operate effectively within an Agile Release Train.</span><span class="c-tags"><span class="badge b-found">Foundation</span><span class="dur">Multi-day</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/agile-and-scrum/safe-courses/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">3</span><span class="c-main"><span class="c-name">Certified ScrumMaster (CSM)</span><span class="c-desc">Facilitate Scrum events and coach teams toward consistent delivery.</span><span class="c-tags"><span class="badge b-found">Foundation</span><span class="dur">Multi-day</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/scrum-master-training/" target="_blank" rel="noopener">View course →</a></div>
+            <a class="browse" href="https://www.learningtree.ca/courses/agile-and-scrum/safe-courses/" target="_blank" rel="noopener">Browse all Agile &amp; Scrum courses ↗</a>
+          </div>
+        </div>
+
+        <!-- CYBER -->
+        <div class="acc">
+          <div class="acc-hd">
+            <span class="t-ico"><svg viewBox="0 0 32 32" fill="none"><path d="M16 3 L5 8 L5 17 C5 23.5 10 28.5 16 30 C22 28.5 27 23.5 27 17 L27 8 Z" stroke="#0057B8" stroke-width="1.6" fill="#CCE5F4"/><path d="M11 16.5 L14.5 20 L21 12.5" stroke="#0057B8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="acc-meta"><span class="acc-title">Cybersecurity</span><span class="acc-sub">Security certification path &middot; 4 courses</span></span>
+            <span class="chev"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 7L9 12L14 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="acc-body">
+            <div class="path-intro">A staged route from <b>foundational security</b> to <b>senior governance and cloud security</b> credentials for TD Securities and ITS teams.</div>
+            <div class="course"><span class="step">1</span><span class="c-main"><span class="c-name">CompTIA Security+</span><span class="c-desc">Baseline skills for core security functions and a career in IT security.</span><span class="c-tags"><span class="badge b-found">Foundation</span><span class="dur">5 days</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/comptia-security-plus-training/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">2</span><span class="c-main"><span class="c-name">CISSP Training &amp; Certification Prep</span><span class="c-desc">Eight-domain mastery for designing and managing enterprise security programs.</span><span class="c-tags"><span class="badge b-adv">Advanced</span><span class="dur">5 days</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/cissp-training/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">3</span><span class="c-main"><span class="c-name">CISM — Certified Information Security Manager</span><span class="c-desc">Governance, risk, and program management for security leadership roles.</span><span class="c-tags"><span class="badge b-adv">Advanced</span><span class="dur">Multi-day</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/cism-training/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">4</span><span class="c-main"><span class="c-name">CCSP — Certified Cloud Security Professional</span><span class="c-desc">Advanced cloud security architecture, operations, and compliance.</span><span class="c-tags"><span class="badge b-adv">Specialty</span><span class="dur">Multi-day</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/ccsp-training/" target="_blank" rel="noopener">View course →</a></div>
+            <a class="browse" href="https://www.learningtree.ca/courses/cybersecurity/" target="_blank" rel="noopener">Browse all Cybersecurity courses ↗</a>
+          </div>
+        </div>
+
+        <!-- ITIL -->
+        <div class="acc">
+          <div class="acc-hd">
+            <span class="t-ico"><svg viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="20" rx="2.5" stroke="#0057B8" stroke-width="1.6" fill="#CCE5F4"/><line x1="9" y1="12" x2="23" y2="12" stroke="#0057B8" stroke-width="1.5" stroke-linecap="round"/><line x1="9" y1="16" x2="23" y2="16" stroke="#0057B8" stroke-width="1.5" stroke-linecap="round"/><line x1="9" y1="20" x2="17" y2="20" stroke="#0057B8" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            <span class="acc-meta"><span class="acc-title">ITIL 5 &amp; Service Management</span><span class="acc-sub">Service management path &middot; 3 courses</span></span>
+            <span class="chev"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 7L9 12L14 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="acc-body">
+            <div class="path-intro">Establish a <b>common service management language</b> and extend it with <b>AI-driven service operations</b> — now built on the newly live ITIL 5.</div>
+            <div class="course"><span class="step">1</span><span class="c-main"><span class="c-name">ITIL 5 Foundation</span><span class="c-desc">Core service management concepts, practices, and the ITIL 5 value system.</span><span class="c-tags"><span class="badge b-found">Foundation</span><span class="dur">Multi-day</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/it-service-managment/itil/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">2</span><span class="c-main"><span class="c-name">AI for IT Service Management</span><span class="c-desc">Apply AI to improve efficiency, scalability, and innovation across ITSM.</span><span class="c-tags"><span class="badge b-inter">Intermediate</span><span class="dur">2 days</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/ai-it-service-management-training/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">3</span><span class="c-main"><span class="c-name">ITSM Practice Courses</span><span class="c-desc">Targeted service management practices to operationalize the framework.</span><span class="c-tags"><span class="badge b-inter">Intermediate</span><span class="dur">Varies</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/it-service-managment/itsm-courses/" target="_blank" rel="noopener">View course →</a></div>
+            <a class="browse" href="https://www.learningtree.ca/courses/it-service-managment/itil/" target="_blank" rel="noopener">Browse all ITIL &amp; ITSM courses ↗</a>
+          </div>
+        </div>
+
+        <!-- POWER BI -->
+        <div class="acc">
+          <div class="acc-hd">
+            <span class="t-ico"><svg viewBox="0 0 32 32" fill="none"><line x1="5" y1="27" x2="28" y2="27" stroke="#0057B8" stroke-width="1.7" stroke-linecap="round"/><line x1="5" y1="5" x2="5" y2="27" stroke="#0057B8" stroke-width="1.7" stroke-linecap="round"/><rect x="8" y="18" width="4.5" height="7" rx="1" fill="#CCE5F4" stroke="#0057B8" stroke-width="1.4"/><rect x="14.5" y="13" width="4.5" height="12" rx="1" fill="#CCE5F4" stroke="#0057B8" stroke-width="1.4"/><rect x="21" y="9" width="4.5" height="16" rx="1" fill="#CCE5F4" stroke="#0057B8" stroke-width="1.4"/></svg></span>
+            <span class="acc-meta"><span class="acc-title">Power BI &amp; Data Analytics</span><span class="acc-sub">Analytics path &middot; 3 courses</span></span>
+            <span class="chev"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 7L9 12L14 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="acc-body">
+            <div class="path-intro">Build analytics capability from <b>first dashboards</b> through to <b>certified analyst skills</b> and a full visualization certificate program.</div>
+            <div class="course"><span class="step">1</span><span class="c-main"><span class="c-name">Introduction to Power BI</span><span class="c-desc">Connect, model, and visualize data to build interactive reports.</span><span class="c-tags"><span class="badge b-found">Foundation</span><span class="dur">3 days</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/microsoft-power-bi-training/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">2</span><span class="c-main"><span class="c-name">Design &amp; Manage Analytics Solutions (PL-300)</span><span class="c-desc">Microsoft certified analyst skills: prep, model, visualize, and deploy.</span><span class="c-tags"><span class="badge b-inter">Intermediate</span><span class="dur">3 days</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/power-bi-training/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">3</span><span class="c-main"><span class="c-name">Data Insights &amp; Visualization Certificate Program</span><span class="c-desc">Structured program building end-to-end data storytelling capability.</span><span class="c-tags"><span class="badge b-prog">Program</span><span class="dur">Multi-week</span></span></span><a class="c-link" href="https://www.learningtree.ca/programs/data-insights-visualization-program/" target="_blank" rel="noopener">View course →</a></div>
+            <a class="browse" href="https://www.learningtree.ca/courses/data-analytics-and-artificial-intelligence/power-bi/" target="_blank" rel="noopener">Browse all Power BI courses ↗</a>
+          </div>
+        </div>
+
+        <!-- LEADERSHIP -->
+        <div class="acc">
+          <div class="acc-hd">
+            <span class="t-ico"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="11" r="4.3" stroke="#0057B8" stroke-width="1.6" fill="#CCE5F4"/><path d="M9 26 C9 20.5 12 18 16 18 C20 18 23 20.5 23 26" stroke="#0057B8" stroke-width="1.6" stroke-linecap="round"/><circle cx="7.5" cy="14" r="3" stroke="#0057B8" stroke-width="1.3"/><path d="M2.5 24 C2.5 20 5 18 7.5 18.5" stroke="#0057B8" stroke-width="1.3" stroke-linecap="round"/><circle cx="24.5" cy="14" r="3" stroke="#0057B8" stroke-width="1.3"/><path d="M29.5 24 C29.5 20 27 18 24.5 18.5" stroke="#0057B8" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+            <span class="acc-meta"><span class="acc-title">Leadership &amp; Management</span><span class="acc-sub">People-leader path &middot; 3 courses</span></span>
+            <span class="chev"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 7L9 12L14 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="acc-body">
+            <div class="path-intro">Develop new and emerging leaders from <b>core management skills</b> to <b>leading in an AI-enabled organization</b>.</div>
+            <div class="course"><span class="step">1</span><span class="c-main"><span class="c-name">Management Skills Training</span><span class="c-desc">Practical foundation for first-time and developing people managers.</span><span class="c-tags"><span class="badge b-found">Foundation</span><span class="dur">3 days</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/management-skills-training/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">2</span><span class="c-main"><span class="c-name">Future Leaders Certificate Program</span><span class="c-desc">Structured program preparing high-potential talent for leadership.</span><span class="c-tags"><span class="badge b-prog">Program</span><span class="dur">Multi-week</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/future-leaders-professional-certificate-program/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">3</span><span class="c-main"><span class="c-name">AI in Leadership Program (AILP)</span><span class="c-desc">Equip leaders to drive AI adoption and lead AI-enabled teams.</span><span class="c-tags"><span class="badge b-prog">Program</span><span class="dur">Multi-week</span></span></span><a class="c-link" href="https://www.learningtree.ca/programs/ai-in-leadership-program/" target="_blank" rel="noopener">View course →</a></div>
+            <a class="browse" href="https://www.learningtree.ca/courses/leadership-and-professional-development/leadership/" target="_blank" rel="noopener">Browse all Leadership courses ↗</a>
+          </div>
+        </div>
+
+        <!-- PROJECT MGMT -->
+        <div class="acc">
+          <div class="acc-hd">
+            <span class="t-ico"><svg viewBox="0 0 32 32" fill="none"><rect x="6" y="5" width="20" height="23" rx="2.5" stroke="#0057B8" stroke-width="1.6" fill="#CCE5F4"/><rect x="11" y="3" width="10" height="4.5" rx="1.3" stroke="#0057B8" stroke-width="1.5" fill="#fff"/><circle cx="11" cy="14" r="1.5" fill="#0057B8"/><line x1="14.5" y1="14" x2="22" y2="14" stroke="#0057B8" stroke-width="1.4" stroke-linecap="round"/><circle cx="11" cy="20" r="1.5" fill="#0057B8"/><line x1="14.5" y1="20" x2="22" y2="20" stroke="#0057B8" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+            <span class="acc-meta"><span class="acc-title">Project Management</span><span class="acc-sub">Delivery leadership path &middot; 3 courses</span></span>
+            <span class="chev"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 7L9 12L14 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="acc-body">
+            <div class="path-intro">From the <b>globally recognized PMP credential</b> to <b>modern, AI-accelerated</b> project delivery practices.</div>
+            <div class="course"><span class="step">1</span><span class="c-main"><span class="c-name">PMP Certification Training</span><span class="c-desc">Full exam preparation across people, process, and business environment domains.</span><span class="c-tags"><span class="badge b-inter">Intermediate</span><span class="dur">Multi-day</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/pmp-certification-training/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">2</span><span class="c-main"><span class="c-name">Modern Project Manager Certificate Program</span><span class="c-desc">Contemporary delivery methods blending predictive and adaptive approaches.</span><span class="c-tags"><span class="badge b-prog">Program</span><span class="dur">Multi-week</span></span></span><a class="c-link" href="https://www.learningtree.ca/programs/modern-project-manager-program/" target="_blank" rel="noopener">View course →</a></div>
+            <div class="course"><span class="step">3</span><span class="c-main"><span class="c-name">Generative AI Strategies for Project Managers</span><span class="c-desc">Apply generative AI to planning, reporting, and stakeholder communication.</span><span class="c-tags"><span class="badge b-found">Foundation</span><span class="dur">1 day</span></span></span><a class="c-link" href="https://www.learningtree.ca/courses/ai-training-for-project-management/" target="_blank" rel="noopener">View course →</a></div>
+            <a class="browse" href="https://www.learningtree.ca/courses/project-management/project-management/" target="_blank" rel="noopener">Browse all Project Management courses ↗</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="why">
+        <h3>Why teams choose Learning Tree</h3>
+        <div class="stats">
+          <div class="stat"><div class="s-val s-num">50+</div><div class="s-lbl">Years as a global IT training leader</div></div>
+          <div class="stat"><div class="s-val s-word">Approved</div><div class="s-lbl">On TD's vendor list at the group discount rate</div></div>
+          <div class="stat"><div class="s-val s-word">AnyWare</div><div class="s-lbl">Live virtual delivery, attend from anywhere</div></div>
+          <div class="stat"><div class="s-val s-num">100%</div><div class="s-lbl">Satisfaction guarantee on every course</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="ftr">
+    <div class="ftr-l">
+      <img class="ftr-logo" src="https://www.learningtree.ca/images/branding/learning-tree-logo_reversed.webp" alt="Learning Tree International" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span class="ftr-fallback">LEARNING TREE</span>
+      <div class="ftr-divider"></div>
+      <div>
+        <div class="ftr-name">Brad Orchard</div>
+        <div class="ftr-role">Sr. Solutions Executive, Learning Tree International</div>
+      </div>
+    </div>
+    <div class="ftr-r">
+      613-571-7871<br>
+      bradley_orchard@learningtree.ca<br>
+      <a class="ftr-cta" href="mailto:bradley_orchard@learningtree.ca">Scoped proposals returned this week</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var accs = Array.prototype.slice.call(document.querySelectorAll('#accGroup .acc'));
+  accs.forEach(function(acc){
+    acc.querySelector('.acc-hd').addEventListener('click', function(){
+      acc.classList.toggle('open');
+      syncToggleLabel();
+    });
+  });
+  if(accs.length) accs[0].classList.add('open');
+  var btn = document.getElementById('toggleAll');
+  function syncToggleLabel(){
+    var allOpen = accs.every(function(a){return a.classList.contains('open');});
+    btn.textContent = allOpen ? 'Collapse all' : 'Expand all';
+  }
+  btn.addEventListener('click', function(){
+    var allOpen = accs.every(function(a){return a.classList.contains('open');});
+    accs.forEach(function(a){ a.classList.toggle('open', !allOpen); });
+    syncToggleLabel();
+  });
+  syncToggleLabel();
+})();
+</script>
